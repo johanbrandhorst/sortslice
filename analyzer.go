@@ -38,12 +38,7 @@ func run(pass *analysis.Pass) (interface{}, error) {
 		if ok {
 			return
 		}
-		msg := fmt.Sprintf("sort.Slice's argument must be a slice; is called with %s", typeName(typ))
-		pass.Report(analysis.Diagnostic{
-			Pos:     call.Pos(),
-			End:     call.End(),
-			Message: msg,
-		})
+		pass.Reportf(call.Pos(), "sort.Slice's argument must be a slice; is called with %s", typeName(typ))
 	}
 	inspect.Preorder(
 		[]ast.Node{(*ast.CallExpr)(nil)},
