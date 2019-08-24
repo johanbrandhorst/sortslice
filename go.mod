@@ -1,4 +1,4 @@
-module github.com/johanbrandhorst/sortslicevet
+module github.com/johanbrandhorst/sortslice
 
 go 1.12
 

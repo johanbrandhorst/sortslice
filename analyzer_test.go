@@ -5,8 +5,8 @@ import (
 
 	"golang.org/x/tools/go/analysis/analysistest"
 
-	"github.com/johanbrandhorst/sortslicevet"
-) 
+	"github.com/johanbrandhorst/sortslice"
+)
 
 func Test(t *testing.T) {
 	testdata := analysistest.TestData()
