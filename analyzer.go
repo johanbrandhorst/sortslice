@@ -34,8 +34,17 @@ func run(pass *analysis.Pass) (interface{}, error) {
 		}
 
 		typ := pass.TypesInfo.Types[call.Args[0]].Type
-		_, ok := typ.(*types.Slice)
-		if ok {
+
+		if _, ok := typ.(*types.Slice); ok {
+			return
+		}
+		if _, ok := typ.Underlying().(*types.Slice); ok {
+			return
+		}
+		if _, ok := typ.(*types.Interface); ok {
+			return
+		}
+		if _, ok := typ.Underlying().(*types.Interface); ok {
 			return
 		}
 		pass.Reportf(call.Pos(), "sort.Slice's argument must be a slice; is called with %s", typeName(typ))
